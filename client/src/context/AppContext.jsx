@@ -1,36 +1,44 @@
-import { createContext, useState, useEffect} from "react";
-import { jobsData } from '../assets/assets';
+import { useEffect } from "react";
+import { createContext, useState } from "react";
+import { jobsData } from "../assets/assets";
+
 
 export const AppContext = createContext();
 
 export const AppContextProvider = (props) => {
+    
   const [searchFilter, setSearchFilter] = useState({
-    title: "",
-    location: ""
+    title:'',
+    location:''
   })
-  const [isSearched, setIsSearched] = useState(false);
-  
-  const [jobs, setJobs] = useState([]);
-  // function to fetch jobs 
-  const fetchJobs = async () => {
-    setJobs(jobsData)
-  }
-  useEffect(() => {
-    fetchJobs();
-  }, []);
+  const [isSearched, setIsSearched] = useState(false)
 
-  const value = {
-    searchFilter,
-    setSearchFilter,
-    isSearched,
-    setIsSearched,
-    jobs,
-    setJobs
-  };
+  const [jobs, setJobs] = useState([])
+
+  const [isRecruiterLoggedIn, setIsRecruiterLoggedIn] = useState(false)
+  const [showRecruiterLogin, setShowRecruiterLogin] = useState(false)
+
+
+  //Function to fetch Jobs
+  const fetchJobs = async () => {
+   setJobs(jobsData)
+  }
+  
+  useEffect(() => {
+   fetchJobs()
+  },[])
+    const value = {
+        setSearchFilter, searchFilter, 
+        setIsSearched, isSearched,
+        jobs, setJobs,
+        setIsRecruiterLoggedIn, isRecruiterLoggedIn,
+        showRecruiterLogin, setShowRecruiterLogin,
+    }
 
   return (
-    <AppContext.Provider value={value}>
+    
+<AppContext.Provider value={value}>
       {props.children}
     </AppContext.Provider>
-  );
-};
+  )
+}
