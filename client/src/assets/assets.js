@@ -106,7 +106,7 @@ export const jobsApplied = [
     {
         company: 'Kenya Connect Ltd',
         title: 'Customer Service Representative',
-        location: 'Nairobi',
+        location: 'Embu',
         date: '22 Aug, 2024',
         status: 'Pending',
         logo: company_icon,
